@@ -26,7 +26,7 @@ def anisotropic_filtering(source_matrix: np.array, filter_matrix: np.array, N=3,
     delta = source_matrix - signal
     return (signal, delta)
 
-def static_filtering(source_matrix: np.array, N=3, m=1.26) -> tuple:
+def static_filtering(source_matrix: np.array, N=3, m=1.23) -> tuple:
     signal = np.zeros_like(source_matrix)
     signal_rows, signal_columns = source_matrix.shape
 
@@ -79,5 +79,7 @@ filter_matrix = np.array([
 ])
 
 print_matrix('ans', anisotropic_filtering(source_matrix, filter_matrix))
-make_colormap(anisotropic_filtering(source_matrix, filter_matrix)[1], 'None')
+make_colormap(source_matrix, 'source matrix')
+make_colormap(anisotropic_filtering(source_matrix, filter_matrix)[1], 'Anisotropic filtering')
 print_matrix('static', static_filtering(source_matrix))
+make_colormap(static_filtering(source_matrix)[1], 'Static filtering')
